@@ -1,49 +1,53 @@
 # Logician
 
-**Deterministic Policy Enforcement Layer for Sovereign AI Systems**
+**Deterministic Policy Enforcement + Automatic Chat Logging for Sovereign AI**
 
-A practical implementation of the ResonantOS "Logician" (Symbiotic Shield) concept — a deterministic rule engine that sits between a probabilistic LLM (the Oracle) and actual execution.
+This repository contains the **VIGIL Logician** (Symbiotic Shield) and a fully automatic chat logging system for Matrix (Element X) and Hermes terminal conversations.
 
-## Purpose
+## Components
 
-While LLMs are excellent at synthesis and ideation, they are unreliable at consistently following complex rules, boundaries, and constitutions. The Logician enforces non-negotiable policies in a deterministic, auditable, and bypass-resistant way.
+### 1. VIGIL Logician (`scripts/vigil_logician.py`)
+Deterministic rule engine that enforces SOUL.md rules before any action or Matrix report. Prevents hallucinations and ensures VIGIL "does what it says."
 
-This repo contains the **VIGIL Logician v0.1**, built for the [Sovereign Intelligence Network](https://github.com/vonstegen/drt-ternary-network-system) and specifically tuned to enforce the rules in [SOUL.md](https://github.com/vonstegen/drt-ternary-network-system/blob/main/Docs/SOUL.md).
+### 2. Automatic Chat Logger (`scripts/chat-logger.py` + `start-vigil-logger.sh`)
+**Fully automatic** logging of all conversations:
+- Matrix / Element X chats with VIGIL
+- Hermes terminal sessions
 
-## Core Features
+**Features:**
+- Clean Obsidian-ready markdown with YAML frontmatter
+- Timestamps, tags, metadata
+- Saves to `chat-logs/`
+- Automatically publishes to `~/VonStegen-Master-Vault/Chats/Vigil/`
 
-- **Deterministic Rules**: Pure Python, no LLM calls in the critical path (ALLOW / HOLD / DENY verdicts with full trace)
-- **SOUL.md Enforcement**: Memory boundaries, injection resistance, sovereign mode, Matrix gateway integrity, quiet hours, constitutional resilience
-- **Integration**: Works with `guardian-verify.sh` to prevent hallucinations in Matrix/Element X reports
-- **Audit Trail**: Every decision is logged for observability and future self-improvement loops
-- **Extensible**: Easy to add new rules as the constitution evolves
-
-## Quick Start
+## Quick Start — Automatic Logging
 
 ```bash
-cd logician
-python3 scripts/vigil_logician.py
+cd ~/logician
+./scripts/start-vigil-logger.sh
 ```
 
-See `Docs/ResonantOS-Logician.md` for the original architectural essay and `scripts/vigil_logician.py` for the implementation.
+This will:
+- Restart the Hermes gateway with logging enabled
+- Start a background processor that converts conversations into beautiful markdown files
+- Automatically publish them to your Obsidian vault under `Chats/Vigil/`
 
-## Repository Structure
+## Files
 
-- `Docs/` — Reference materials and audits (Claude 3.5 Sonnet + GPT-4o reviews)
-- `scripts/` — Core `vigil_logician.py` and `guardian-verify.sh`
-- `research/` — Scientific documentation and experiments
+- `scripts/vigil_logician.py` — The deterministic Logician
+- `scripts/chat-logger.py` — Core logging engine (v2.0)
+- `scripts/start-vigil-logger.sh` — Launches everything automatically
+- `scripts/guardian-verify.sh` — Companion verification tool
+- `Docs/` — Reference materials and audits (Claude 3.5 Sonnet + GPT-4o)
 
-## Related Projects
+## Philosophy
 
-- [drt-ternary-network-system](https://github.com/vonstegen/drt-ternary-network-system) — Primary research workspace where this was developed
-- ResonantOS concept by Augmented Mind (Substack)
+"The Oracle proposes. The Logician disposes."
 
-## License
-
-MIT — feel free to adapt for your own sovereign AI systems.
+All conversations are now automatically preserved as clean, searchable, dated Obsidian notes. No more lost context. Full audit trail for the Ternary Rod Rig project and beyond.
 
 ---
 
-**"The Oracle proposes. The Logician disposes."**
+Built as part of the Sovereign Intelligence Network. See [drt-ternary-network-system](https://github.com/vonstegen/drt-ternary-network-system) for the main research workspace.
 
-Built as part of the Ternary Rod Rig project to make VIGIL (and similar systems) a truly trustworthy, fixed-point AI partner that does what it says it will do.
+Last updated: 2026-06-20
